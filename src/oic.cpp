@@ -119,33 +119,33 @@ int main(int argc, char** argv) {
 
 				//TODO : Initialize the variables used in the Kalman filter
 
-                for (int i = 0; i < 2; ++i)
-                {
-                    pt_p_pos_l.x = 0;
-                    pt_p_pos_l.y = 0;
-                    pt_p_vel_l.x = 0;
-                    pt_p_vel_l.y = 0;
-                    pt_e_pos_l.x = 0;
-                    pt_e_pos_l.y = 0;
+                // for (int i = 0; i < 2; ++i)
+                // {
+                //     pt_p_pos_l.x = 0;
+                //     pt_p_pos_l.y = 0;
+                //     pt_p_vel_l.x = 0;
+                //     pt_p_vel_l.y = 0;
+                //     pt_e_pos_l.x = 0;
+                //     pt_e_pos_l.y = 0;
 
-                    pt_p_pos_r.x = 0;
-                    pt_p_pos_r.y = 0;
-                    pt_p_vel_r.x = 0;
-                    pt_p_vel_r.y = 0;
-                    pt_e_pos_r.x = 0;
-                    pt_e_pos_r.y = 0;
-                }
+                //     pt_p_pos_r.x = 0;
+                //     pt_p_pos_r.y = 0;
+                //     pt_p_vel_r.x = 0;
+                //     pt_p_vel_r.y = 0;
+                //     pt_e_pos_r.x = 0;
+                //     pt_e_pos_r.y = 0;
+                // }
 
-                for(int i = 0; i < 3; ++ i)
-                {
-                    vec_ce_pos_l[i] = 0;
-                    vec_ep_pos_l[i] = 0;
-                    vec_cp_pos_l[i] = 0;
+                // for(int i = 0; i < 3; ++ i)
+                // {
+                //     vec_ce_pos_l[i] = 0;
+                //     vec_ep_pos_l[i] = 0;
+                //     vec_cp_pos_l[i] = 0;
 
-                    vec_ce_pos_r[i] = 0;
-                    vec_ep_pos_r[i] = 0;
-                    vec_cp_pos_r[i] = 0;
-                }
+                //     vec_ce_pos_r[i] = 0;
+                //     vec_ep_pos_r[i] = 0;
+                //     vec_cp_pos_r[i] = 0;
+                // }
 
 				pt_p_pos_l_old = pt_p_pos_l;
 				pt_p_vel_l_old = pt_p_vel_l;
