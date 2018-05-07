@@ -25,6 +25,10 @@ $ cd eye-gaze
 $ ./bin/oic
 ```
 
+If you're using Mac OS download and install <a href="https://www.xquartz.org/"> XQuartz </a>
+<br/>
+Launch XQuartz before running ```./bin/oic ```
+
 ## Dependencies
 
 * OpenCV ( used 2.4.9 )
