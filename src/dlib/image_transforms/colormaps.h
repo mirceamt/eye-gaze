@@ -145,7 +145,10 @@ namespace dlib
     )
     {
         typedef op_heatmap<image_type> op;
-        return matrix_op<op>(op(img,max(mat(img)),min(mat(img))));
+        if (num_columns(img) * num_rows(img) != 0)
+            return matrix_op<op>(op(img,max(mat(img)),min(mat(img))));
+        else
+            return matrix_op<op>(op(img,0,0));
     }
 
 // ----------------------------------------------------------------------------------------
@@ -252,7 +255,10 @@ namespace dlib
     )
     {
         typedef op_jet<image_type> op;
-        return matrix_op<op>(op(img,max(mat(img)),min(mat(img))));
+        if (num_columns(img) * num_rows(img) != 0)
+            return matrix_op<op>(op(img,max(mat(img)),min(mat(img))));
+        else
+            return matrix_op<op>(op(img,0,0));
     }
 
 // ----------------------------------------------------------------------------------------

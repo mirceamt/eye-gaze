@@ -319,6 +319,25 @@ namespace dlib
                 - returns #*this
         !*/
 
+        bool operator== (
+            const drectangle& rect
+        ) const;
+        /*!
+            ensures
+                - if (top() == rect.top() && left() == rect.left() &&
+                      right() == rect.right() && bottom() == rect.bottom()) then
+                    - returns true
+                - else
+                    - returns false
+        !*/
+
+        bool operator!= (
+            const drectangle& rect
+        ) const;
+        /*!
+            ensures
+                - returns !(*this == rect)
+        !*/
     };
 
 // ----------------------------------------------------------------------------------------
@@ -505,6 +524,18 @@ namespace dlib
 
 // ----------------------------------------------------------------------------------------
 
+    drectangle centered_drect (
+        const drectangle& rect,
+        double width,
+        double height
+    );
+    /*!
+        ensures
+            - returns centered_drect(center(rect), width, height)
+    !*/
+
+// ----------------------------------------------------------------------------------------
+
     const drectangle shrink_rect (
         const drectangle& rect,
         double num 
@@ -552,6 +583,41 @@ namespace dlib
         ensures
             - return shrink_rect(rect, -width, -height)
               (i.e. grows the given drectangle by expanding its border)
+    !*/
+
+// ----------------------------------------------------------------------------------------
+
+    drectangle set_rect_area (
+        const drectangle& rect,
+        double area
+    );
+    /*!
+        requires
+            - area >= 0
+        ensures
+            - Returns a rectangle R such that:
+                - center(R) == center(rect)
+                - R has the same aspect ratio as rect.  If rect.area() == 0 then the
+                  returned rect has a 1:1 aspect ratio.
+                - R.area() == area
+    !*/
+
+// ----------------------------------------------------------------------------------------
+
+    drectangle set_aspect_ratio (
+        const drectangle& rect,
+        double ratio
+    );
+    /*!
+        requires
+            - ratio > 0
+        ensures
+            - This function reshapes the given rectangle so that it has the given aspect
+              ratio.  In particular, this means we return a rectangle R such that the
+              following equations are true:
+                - R.width()/R.height() == ratio
+                - R.area() == rect.area()
+                - dcenter(rect) == dcenter(R)
     !*/
 
 // ----------------------------------------------------------------------------------------

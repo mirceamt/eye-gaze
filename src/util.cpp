@@ -4,7 +4,7 @@
 
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/opencv.hpp>
-#include <opencv2/legacy/compat.hpp>
+//#include <opencv2/legacy/compat.hpp>
 
 #include "dlib/opencv.h"
 #include "dlib/image_processing/frontal_face_detector.h"

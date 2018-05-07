@@ -4,7 +4,7 @@
 
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/opencv.hpp>
-#include <opencv2/legacy/compat.hpp>
+//#include <opencv2/legacy/compat.hpp>
 
 #include "dlib/opencv.h"
 #include "dlib/image_processing/frontal_face_detector.h"
@@ -28,8 +28,8 @@ void init_kalman_point_p_l(cv::Point pt_pos_l) {
 	/*KF_p_l.transitionMatrix = *(cv::Mat_<float>(4,4) << 1,0,1,0,    0,1,0,1,0,     0,0,1,0,   0,0,0,1);
 	KF_p_l.processNoiseCov = *(cv::Mat_<float>(4,4) << 0.2,0,0.2,0,  0,0.2,0,0.2,  0,0,0.3,0,   
 		0,0,0,0.3);*/
-	KF_p_l.transitionMatrix = *(cv::Mat_<float>(6,6) << 1,0,1,0,0.5,0,    0,1,0,1,0,0.5,     0,0,1,0,1,0,   0,0,0,1,0,1,  0,0,0,0,1,0,  0,0,0,0,0,1);
-	KF_p_l.processNoiseCov = *(cv::Mat_<float>(6,6) << 0.2,0,0.2,0,  0,0.2,0,0.2,  0,0,0.3,0,   
+	KF_p_l.transitionMatrix = (cv::Mat_<float>(6,6) << 1,0,1,0,0.5,0,    0,1,0,1,0,0.5,     0,0,1,0,1,0,   0,0,0,1,0,1,  0,0,0,0,1,0,  0,0,0,0,0,1);
+	KF_p_l.processNoiseCov = (cv::Mat_<float>(6,6) << 0.2,0,0.2,0,  0,0.2,0,0.2,  0,0,0.3,0,
 		0,0,0,0.3, 0.2,0,0.2,0,  0,0.2,0,0.2);
 
 	cv::setIdentity(KF_p_l.measurementMatrix);
@@ -67,8 +67,8 @@ void init_kalman_point_p_r(cv::Point pt_pos_r) {
 	/*KF_p_r.transitionMatrix = *(cv::Mat_<float>(4,4) << 1,0,1,0,    0,1,0,1,0,     0,0,1,0,   0,0,0,1);
 	KF_p_r.processNoiseCov = *(cv::Mat_<float>(4,4) << 0.2,0,0.2,0,  0,0.2,0,0.2,  0,0,0.3,0,   
 		0,0,0,0.3);*/
-	KF_p_r.transitionMatrix = *(cv::Mat_<float>(6,6) << 1,0,1,0,0.5,0,    0,1,0,1,0,0.5,     0,0,1,0,1,0,   0,0,0,1,0,1,  0,0,0,0,1,0,  0,0,0,0,0,1);
-	KF_p_r.processNoiseCov = *(cv::Mat_<float>(6,6) << 0.2,0,0.2,0,  0,0.2,0,0.2,  0,0,0.3,0,   
+	KF_p_r.transitionMatrix = (cv::Mat_<float>(6,6) << 1,0,1,0,0.5,0,    0,1,0,1,0,0.5,     0,0,1,0,1,0,   0,0,0,1,0,1,  0,0,0,0,1,0,  0,0,0,0,0,1);
+	KF_p_r.processNoiseCov = (cv::Mat_<float>(6,6) << 0.2,0,0.2,0,  0,0.2,0,0.2,  0,0,0.3,0,
 		0,0,0,0.3, 0.2,0,0.2,0,  0,0.2,0,0.2);
 
 	cv::setIdentity(KF_p_r.measurementMatrix);
@@ -101,8 +101,8 @@ void init_kalman_point_e_l(cv::Point pt_pos_l) {
 	KF_e_l.statePre.at<float>(2) = 0;
 	KF_e_l.statePre.at<float>(3) = 0;
 
-	KF_e_l.transitionMatrix = *(cv::Mat_<float>(4,4) << 1,0,1,0,    0,1,0,1,0,     0,0,1,0,   0,0,0,1);
-	KF_e_l.processNoiseCov = *(cv::Mat_<float>(4,4) << 0.2,0,0.2,0,  0,0.2,0,0.2,  0,0,0.3,0,   
+	KF_e_l.transitionMatrix = (cv::Mat_<float>(4,4) << 1,0,1,0,    0,1,0,1,0,     0,0,1,0,   0,0,0,1);
+	KF_e_l.processNoiseCov = (cv::Mat_<float>(4,4) << 0.2,0,0.2,0,  0,0.2,0,0.2,  0,0,0.3,0,
 		0,0,0,0.3);
 	cv::setIdentity(KF_e_l.measurementMatrix);
 	cv::setIdentity(KF_e_l.processNoiseCov,cv::Scalar::all(1e-4));
@@ -132,8 +132,8 @@ void init_kalman_point_e_r(cv::Point pt_pos_r) {
 	KF_e_r.statePre.at<float>(2) = 0;
 	KF_e_r.statePre.at<float>(3) = 0;
 
-	KF_e_r.transitionMatrix = *(cv::Mat_<float>(4,4) << 1,0,1,0,    0,1,0,1,0,     0,0,1,0,   0,0,0,1);
-	KF_e_r.processNoiseCov = *(cv::Mat_<float>(4,4) << 0.2,0,0.2,0,  0,0.2,0,0.2,  0,0,0.3,0,   
+	KF_e_r.transitionMatrix = (cv::Mat_<float>(4,4) << 1,0,1,0,    0,1,0,1,0,     0,0,1,0,   0,0,0,1);
+	KF_e_r.processNoiseCov = (cv::Mat_<float>(4,4) << 0.2,0,0.2,0,  0,0.2,0,0.2,  0,0,0.3,0,
 		0,0,0,0.3);
 	cv::setIdentity(KF_e_r.measurementMatrix);
 	cv::setIdentity(KF_e_r.processNoiseCov,cv::Scalar::all(1e-4));
@@ -167,8 +167,8 @@ void init_kalman_ce_l(std::vector<double> vec) {
 	KF_ce_l.statePre.at<float>(5) = 0;
 
 
-	KF_ce_l.transitionMatrix = *(cv::Mat_<float>(6, 6) << 1,0,0,1,0,0, 0,1,0,0,1,0, 0,0,1,0,0,1, 0,0,0,1,0,0, 0,0,0,0,1,0, 0,0,0,0,0,1);
-	KF_ce_l.processNoiseCov = *(cv::Mat_<float>(6,6) << 0.2,0,0.2,0,  0,0.2,0,0.2,  0,0,0.3,0,   
+	KF_ce_l.transitionMatrix = (cv::Mat_<float>(6, 6) << 1,0,0,1,0,0, 0,1,0,0,1,0, 0,0,1,0,0,1, 0,0,0,1,0,0, 0,0,0,0,1,0, 0,0,0,0,0,1);
+	KF_ce_l.processNoiseCov = (cv::Mat_<float>(6,6) << 0.2,0,0.2,0,  0,0.2,0,0.2,  0,0,0.3,0,
 		0,0,0,0.3, 0.2,0,0.2,0,  0,0.2,0,0.2);
 
 	cv::setIdentity(KF_ce_l.measurementMatrix);
@@ -205,8 +205,8 @@ void init_kalman_ce_r(std::vector<double> vec) {
 	KF_ce_r.statePre.at<float>(5) = 0;
 
 
-	KF_ce_r.transitionMatrix = *(cv::Mat_<float>(6, 6) << 1,0,0,1,0,0, 0,1,0,0,1,0, 0,0,1,0,0,1, 0,0,0,1,0,0, 0,0,0,0,1,0, 0,0,0,0,0,1);
-	KF_ce_r.processNoiseCov = *(cv::Mat_<float>(6,6) << 0.2,0,0.2,0,  0,0.2,0,0.2,  0,0,0.3,0,   
+	KF_ce_r.transitionMatrix = (cv::Mat_<float>(6, 6) << 1,0,0,1,0,0, 0,1,0,0,1,0, 0,0,1,0,0,1, 0,0,0,1,0,0, 0,0,0,0,1,0, 0,0,0,0,0,1);
+	KF_ce_r.processNoiseCov = (cv::Mat_<float>(6,6) << 0.2,0,0.2,0,  0,0.2,0,0.2,  0,0,0.3,0,
 		0,0,0,0.3, 0.2,0,0.2,0,  0,0.2,0,0.2);
 
 	cv::setIdentity(KF_ce_r.measurementMatrix);
@@ -243,8 +243,8 @@ void init_kalman_ep_l(std::vector<double> vec) {
 	KF_ep_l.statePre.at<float>(5) = 0;
 
 
-	KF_ep_l.transitionMatrix = *(cv::Mat_<float>(6, 6) << 1,0,0,1,0,0, 0,1,0,0,1,0, 0,0,1,0,0,1, 0,0,0,1,0,0, 0,0,0,0,1,0, 0,0,0,0,0,1);
-	KF_ep_l.processNoiseCov = *(cv::Mat_<float>(6,6) << 0.2,0,0.2,0,  0,0.2,0,0.2,  0,0,0.3,0,   
+	KF_ep_l.transitionMatrix = (cv::Mat_<float>(6, 6) << 1,0,0,1,0,0, 0,1,0,0,1,0, 0,0,1,0,0,1, 0,0,0,1,0,0, 0,0,0,0,1,0, 0,0,0,0,0,1);
+	KF_ep_l.processNoiseCov = (cv::Mat_<float>(6,6) << 0.2,0,0.2,0,  0,0.2,0,0.2,  0,0,0.3,0,
 		0,0,0,0.3, 0.2,0,0.2,0,  0,0.2,0,0.2);
 
 	cv::setIdentity(KF_ep_l.measurementMatrix);
@@ -281,8 +281,8 @@ void init_kalman_ep_r(std::vector<double> vec) {
 	KF_ep_r.statePre.at<float>(5) = 0;
 
 
-	KF_ep_r.transitionMatrix = *(cv::Mat_<float>(6, 6) << 1,0,0,1,0,0, 0,1,0,0,1,0, 0,0,1,0,0,1, 0,0,0,1,0,0, 0,0,0,0,1,0, 0,0,0,0,0,1);
-	KF_ep_r.processNoiseCov = *(cv::Mat_<float>(6,6) << 0.2,0,0.2,0,  0,0.2,0,0.2,  0,0,0.3,0,   
+	KF_ep_r.transitionMatrix = (cv::Mat_<float>(6, 6) << 1,0,0,1,0,0, 0,1,0,0,1,0, 0,0,1,0,0,1, 0,0,0,1,0,0, 0,0,0,0,1,0, 0,0,0,0,0,1);
+	KF_ep_r.processNoiseCov = (cv::Mat_<float>(6,6) << 0.2,0,0.2,0,  0,0.2,0,0.2,  0,0,0.3,0,
 		0,0,0,0.3, 0.2,0,0.2,0,  0,0.2,0,0.2);
 
 	cv::setIdentity(KF_ep_r.measurementMatrix);
@@ -319,8 +319,8 @@ void init_kalman_cp_l(std::vector<double> vec) {
 	KF_cp_l.statePre.at<float>(5) = 0;
 
 
-	KF_cp_l.transitionMatrix = *(cv::Mat_<float>(6, 6) << 1,0,0,1,0,0, 0,1,0,0,1,0, 0,0,1,0,0,1, 0,0,0,1,0,0, 0,0,0,0,1,0, 0,0,0,0,0,1);
-	KF_cp_l.processNoiseCov = *(cv::Mat_<float>(6,6) << 0.2,0,0.2,0,  0,0.2,0,0.2,  0,0,0.3,0,   
+	KF_cp_l.transitionMatrix = (cv::Mat_<float>(6, 6) << 1,0,0,1,0,0, 0,1,0,0,1,0, 0,0,1,0,0,1, 0,0,0,1,0,0, 0,0,0,0,1,0, 0,0,0,0,0,1);
+	KF_cp_l.processNoiseCov = (cv::Mat_<float>(6,6) << 0.2,0,0.2,0,  0,0.2,0,0.2,  0,0,0.3,0,
 		0,0,0,0.3, 0.2,0,0.2,0,  0,0.2,0,0.2);
 
 	cv::setIdentity(KF_cp_l.measurementMatrix);
@@ -357,8 +357,8 @@ void init_kalman_cp_r(std::vector<double> vec) {
 	KF_cp_r.statePre.at<float>(5) = 0;
 
 
-	KF_cp_r.transitionMatrix = *(cv::Mat_<float>(6, 6) << 1,0,0,1,0,0, 0,1,0,0,1,0, 0,0,1,0,0,1, 0,0,0,1,0,0, 0,0,0,0,1,0, 0,0,0,0,0,1);
-	KF_cp_r.processNoiseCov = *(cv::Mat_<float>(6,6) << 0.2,0,0.2,0,  0,0.2,0,0.2,  0,0,0.3,0,   
+	KF_cp_r.transitionMatrix = (cv::Mat_<float>(6, 6) << 1,0,0,1,0,0, 0,1,0,0,1,0, 0,0,1,0,0,1, 0,0,0,1,0,0, 0,0,0,0,1,0, 0,0,0,0,0,1);
+	KF_cp_r.processNoiseCov = (cv::Mat_<float>(6,6) << 0.2,0,0.2,0,  0,0.2,0,0.2,  0,0,0.3,0,
 		0,0,0,0.3, 0.2,0,0.2,0,  0,0.2,0,0.2);
 
 	cv::setIdentity(KF_cp_r.measurementMatrix);

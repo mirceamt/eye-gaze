@@ -4,11 +4,12 @@
 
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/opencv.hpp>
-#include <opencv2/legacy/compat.hpp>
+//#include <opencv2/legacy/compat.hpp>
 
 #include "dlib/opencv.h"
 #include "dlib/image_processing/frontal_face_detector.h"
 #include "dlib/image_processing/render_face_detections.h"
+#include "dlib/image_processing/shape_predictor.h"
 #include "dlib/gui_widgets.h"
 
 #include "faceDetection.h"
@@ -37,7 +38,8 @@ int main(int argc, char** argv) {
 		FacePose *face_pose = new FacePose();
 
 		frontal_face_detector detector = get_frontal_face_detector();
-		shape_predictor pose_model;
+
+		dlib::shape_predictor pose_model;
 		deserialize("./res/shape_predictor_68_face_landmarks.dat") >> pose_model;
 
 		std::vector<double> vec_ce_pos_l(3), vec_ce_vel_l(3), vec_ce_pos_l_old(3), vec_ce_vel_l_old(3), vec_ce_kalman_l(3);
@@ -116,6 +118,34 @@ int main(int argc, char** argv) {
 			else {
 
 				//TODO : Initialize the variables used in the Kalman filter
+
+                for (int i = 0; i < 2; ++i)
+                {
+                    pt_p_pos_l.x = 0;
+                    pt_p_pos_l.y = 0;
+                    pt_p_vel_l.x = 0;
+                    pt_p_vel_l.y = 0;
+                    pt_e_pos_l.x = 0;
+                    pt_e_pos_l.y = 0;
+
+                    pt_p_pos_r.x = 0;
+                    pt_p_pos_r.y = 0;
+                    pt_p_vel_r.x = 0;
+                    pt_p_vel_r.y = 0;
+                    pt_e_pos_r.x = 0;
+                    pt_e_pos_r.y = 0;
+                }
+
+                for(int i = 0; i < 3; ++ i)
+                {
+                    vec_ce_pos_l[i] = 0;
+                    vec_ep_pos_l[i] = 0;
+                    vec_cp_pos_l[i] = 0;
+
+                    vec_ce_pos_r[i] = 0;
+                    vec_ep_pos_r[i] = 0;
+                    vec_cp_pos_r[i] = 0;
+                }
 
 				pt_p_pos_l_old = pt_p_pos_l;
 				pt_p_vel_l_old = pt_p_vel_l;
